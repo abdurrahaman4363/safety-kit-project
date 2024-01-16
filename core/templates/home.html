@@ -1,0 +1,305 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block head_title %}Safety Kit{% endblock %} 
+{% block content %}
+<div class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
+
+    
+    <div class="flex flex-col w-full lg:w-1/2 justify-center items-start pt-12 pb-24 px-6 rounded-2xl bg-opacity-70 mx-3">
+        <h1 class="font-bold text-4xl my-4">Welcome to Safety Kit</h1>
+        <p class="leading-normal mb-4">
+        Vaccines reduce risks of getting a disease by working with your body's natural defences to build protection. When you get a vaccine, your immune system responds. We now have vaccines to prevent more than 20 life-threatening diseases, helping people of all ages live longer, healthier lives.
+
+        </p>
+        {% comment %} <div class="flex justify-end w-full">
+            <a href="{% url 'register' %}" class="bg-blue-900 text-white rounded-none hover:bg-white hover:text-blue-900 hover:border-blue-900 shadow hover:shadow-lg py-2 px-4 border border-gray-900 hover:border-transparent">Register</a>
+        </div> {% endcomment %}
+    </div>
+    <div class="w-full lg:w-1/2 lg:py-6 text-center ">
+        <img class ="rounded-2xl" src ="{% static './img/Vaccine1.png' %}"/>
+    </div>
+</div>
+
+
+<!-- vaccine section --> 
+<h1 id="campaign" class="font-bold text-3xl text-center my-5 pb-5 text-blue-900">
+   Vaccine Zone
+</h1>
+
+<div class="flex justify-around flex-wrap">
+
+  <div class="max-w-sm rounded overflow-hidden shadow-lg mb-4 hover:shadow-2xl hover:bg-gray-400 hover:text-blue-500 transition duration-300">
+      <img class="w-full h-100" style='height: 250px;' src="{% static './img/vaccine2.png' %}" alt="Card image 1">
+      <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">Covid-19</div>
+          <p class="text-gray-700 text-base">Our Covid-19 vaccine provides robust protection against the virus, significantly reducing the risk of infection and severe illness.</p>
+      </div>
+  </div>
+
+  <div class="max-w-sm rounded overflow-hidden shadow-lg mb-4 hover:shadow-2xl hover:bg-gray-400 hover:text-blue-500 transition duration-300">
+      <img class="w-full h-100" style='height: 250px;' src="{% static './img/vaccine3.jpg' %}" alt="Card image 2">
+      <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">PinnacleGuard </div>
+          <p class="text-gray-700 text-base">Embrace hope and choose PinnacleGuard for a safer future, where each vaccination brings us closer to overcoming the challenges of the </p>
+      </div>
+  </div>
+
+  <div class="max-w-sm rounded overflow-hidden shadow-lg mb-4 hover:shadow-2xl hover:bg-gray-400 hover:text-blue-500 transition duration-300">
+      <img class="w-full h-100" style='height: 250px;' src="{% static './img/vaccine4.png' %}" alt="Card image 3">
+      <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">ViroShield Elixar</div>
+          <p class="text-gray-700 text-base">Unveiling ViroShield Elixar, a potent Covid-19 vaccine that fortifies your defenses, offering a shield of immunity against the virus.</p>
+      </div>
+  </div>
+
+  <div class="max-w-sm rounded overflow-hidden shadow-lg mb-4 hover:shadow-2xl hover:bg-gray-400 hover:text-blue-500 transition duration-300">
+      <img class="w-full h-100" style='height: 250px;' src="{% static './img/vaccine5.jpg' %}" alt="Card image 3">
+      <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">ImmuSafe Plus</div>
+          <p class="text-gray-700 text-base">ImmuSafe Plus is a cutting-edge vaccine designed to provide enhanced protection against a wide range of viruses, ensuring your immune system is well-equipped for the challenges ahead.</p>
+      </div>
+  </div>
+
+  <div class="max-w-sm rounded overflow-hidden shadow-lg mb-4 hover:shadow-2xl hover:bg-gray-400 hover:text-blue-500 transition duration-300">
+      <img class="w-full h-100" style='height: 250px;' src="{% static './img/vaccine6.jpg' %}" alt="Card image 3">
+      <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">GuardianShield Pro</div>
+          <p class="text-gray-700 text-base">Introducing GuardianShield Pro, a next-generation vaccine with advanced features to safeguard your health. Trust in its efficacy to shield you from potential threats.</p>
+      </div>
+  </div>
+
+  <div class="max-w-sm rounded overflow-hidden shadow-lg mb-4 hover:shadow-2xl hover:bg-gray-400 hover:text-blue-500 transition duration-300">
+      <img class="w-full h-100" style='height: 250px;' src="{% static './img/vaccine7.jpg' %}" alt="Card image 3">
+      <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">EcoDefender </div>
+          <p class="text-gray-700 text-base">EcoDefender Vaccine is more than just a solution; it's a commitment to a sustainable future. Experience the power of immunity while contributing to the well-being of our planet.</p>
+      </div>
+  </div>
+
+</div>
+
+
+
+<!--All Campaign section-->
+
+<div class="flex flex-wrap justify-center p-4 mb-10">
+    <div class="p-3">
+      <h1 id="campaign" class="font-bold text-3xl text-center pb-5 text-blue-900">
+        Choose The Campaign
+      </h1>
+      <div class="flex flex-wrap pt-5 mb-5">
+        {% for c in campaigns %}
+        <div class="w-1/4 p-2 min-h-full">
+          <div class="bg-pink-100 rounded-lg overflow-hidden shadow-lg hover:bg-gray-400 hover:shadow-2xl transition duration-300">
+            <img
+            style='height: 250px;'
+              src="{{ c.image.url }}"
+              class="w-full h-50 object-cover"
+              alt="image"
+            />
+            <div class="p-4">
+              <h5 class="text-xl font-bold">
+                <a href="" class="text-blue-900">{{ c.name }}</a>
+              </h5>
+              <p><b>Start Date:</b> {{ c.start_date }}</p>
+              <p><b>End Date:</b> {{ c.end_date }}</p>
+              <p class="text-gray-700 mb-4">
+                {{ c.description|truncatewords:15 }}
+              </p>
+
+              {% if request.user.is_authenticated %}
+              <a
+                href="{% url 'vaccine_list'%}"
+                class="bg-blue-900 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >Vaccine List</a
+              >
+              <a
+                href="{% url 'campaign_review' c.id %}#review"
+                class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >Add Review</a
+              >
+              {% else %}
+              <a
+                href="{% url 'login' %}"
+                class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >Vaccine List</a
+              >
+              <a
+              href="{% url 'login' %}"
+              class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >Add Review</a
+            >
+              {% endif %}
+
+         
+
+
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+  
+   <!--Patient Review section-->
+  
+  <div class='mb-20 mx-10'>
+    <h3 id='review' class="font-bold text-3xl text-center text-blue-900 pb-5 mt-3">
+      Patient Reviews
+    </h3>
+     <p class="text-gray-700 text-center mb-5 pb-4">
+      Discover the inspiring journeys of our patients as they share their path to better health through <br>vaccination. Their stories emphasize the positive influence of immunization, encouraging others <br>to prioritize wellness. Become part of a community dedicated to fostering a healthier world......
+     </p>
+      {% if reviews %}
+      <div class="reviews swiffy-slider slider-item-show3 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-fadein slider-item-first-visible ">
+      <ul id="review-slider" class="slider-container py-4 ">
+        {% for review in reviews %}
+          <li>
+            <div class="w-4/4 p-2 min-h-full ">
+              <div class="bg-blue-900 text-white rounded-lg overflow-hidden shadow-lg">
+                <div class="p-4">
+                  <h5 class="text-xl font-bold">
+                    <a href="" class="text-blue-900">
+                      {{review.reviwer.first_name}} {{review.reviwer.last_name}}
+                    </a>
+                  </h5>
+                  <p><b>Date:</b> {{ review.created }}</p>
+                  <p><b>Campaign:</b> {{ review.campaign.name }}</p>
+                  <p><b>Rating:</b> {{ review.rating }}</p>
+                  <p class=" mb-4">{{ review.comment|truncatewords:10 }}</p>
+                </div>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+  
+      <button type="button" class="slider-nav" aria-label="Go left"></button>
+      <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+  
+      <div class="slider-indicators">
+        {% for review in reviews %}
+          <button aria-label="Go to slide"></button>
+        {% endfor %}
+      </div>
+     </div>
+     {% else %}
+    <p class="font-bold text-xl text-center text-blue-900 pb-5 mt-3">
+      No reviews available for this campaign.
+    </p>
+     {% endif %}
+  
+  </div>
+  
+  
+   <!-- About Us section -->
+   <h1 id="campaign" class="font-bold text-3xl text-center pb-5 text-blue-900">
+    About Us
+  </h1>
+  <div class="flex flex-wrap px-2 py-3 m-5 items-center bg-pink-100 text-white rounded-lg overflow-hidden  mb-20">
+
+    <div class="w-full md:w-1/2">
+      
+ 
+      <h1 class="text-2xl font-bold my-4 mx-10 text-gray-700">
+        Championing Well-being <br> A Roadmap to Vaccination Health
+      </h1>
+  
+      <p class="mb-4 text-gray-700 mx-10">
+        Our commitment revolves around furnishing you with thorough and trustworthy insights into vaccinations, steering you on the path to improved health. We are driven by the mission to equip individuals and communities with knowledge about immunization, fostering a safer and healthier future for everyone. Delve into our wealth of resources, stay updated, and unite with us in the joint endeavor to advocate wellness through vaccination. Together, let's construct a formidable shield of protection for a healthier world.
+
+      </p>
+      <button
+        class="bg-blue-900 hover:bg-blue-700 text-white mx-10 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        More About
+      </button>
+    </div>
+
+
+    <div class="w-full md:w-1/2">
+      <img
+      class="w-full rounded pr-10 m-4 mx-5 transform hover:scale-105 transition-transform"
+        src="{% static 'img/about_us1.jpg' %}"
+        alt="image"
+      />
+    </div>
+    </div>
+  </div>
+          
+
+  <!-- blog section --> 
+
+  <h1 id="campaign" class="font-bold text-3xl text-center my-5 pb-5 text-blue-900">
+    Wellness Wonders Corner
+  </h1>
+
+  <div class="mx-24">
+    
+    <div class="flex justify-center items-center my-2 border rounded-lg bg-purple-200 hover:bg-purple-400 transition duration-300">
+        
+        <div class="flex-shrink-0 mr-4">
+            <img src="{% static 'img/blog1.png' %}" alt="Blog Image" class="w-32 h-32 object-cover rounded">
+        </div>
+  
+        
+        <div class="flex-grow px-10">
+            <h2 class="text-2xl font-bold mb-2">QuantumShield ViroBlock</h2>
+            <p class="text-gray-600 font-bold w-4/5">Embark on a journey through the groundbreaking technology of QuantumShield ViroBlock. Unveil the secrets behind its quantum-level defense mechanism, offering unparalleled protection against viral infections.</p>
+        </div>
+  
+        
+        <div class="flex-shrink-0 pr-16">
+            <a href="#" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Read More</a>
+        </div>
+    </div>
+
+    <div class="flex justify-center items-center my-2 border rounded-lg bg-purple-200 hover:bg-purple-400 transition duration-300">
+        
+        <div class="flex-shrink-0 mr-4">
+            <img src="{% static 'img/blog2.jpg' %}" alt="Blog Image" class="w-32 h-32 object-cover rounded">
+        </div>
+  
+        
+        <div class="flex-grow px-10">
+            <h2 class="text-2xl font-bold mb-2">NanoArmor Immunogen</h2>
+            <p class="text-gray-600 font-bold w-4/5">Explore the microscopic world of NanoArmor Immunogen, a vaccine equipped with nanotechnology. Delve into how these tiny warriors fortify the immune system, providing a formidable defense against pathogens.</p>
+        </div>
+  
+        
+        <div class="flex-shrink-0 pr-16">
+            <a href="#" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Read More</a>
+        </div>
+    </div>
+
+
+    <div class="flex justify-center items-center my-2 border rounded-lg bg-purple-200 hover:bg-purple-400 transition duration-300">
+        
+        <div class="flex-shrink-0 mr-4">
+            <img src="{% static 'img/blog3.jpg' %}" alt="Blog Image" class="w-32 h-32 object-cover rounded">
+        </div>
+  
+        
+        <div class="flex-grow px-10">
+            <h2 class="text-2xl font-bold mb-2">CelestialGuard Antivirion</h2>
+            <p class="text-gray-600 font-bold w-4/5">Journey to the celestial realms with CelestialGuard Antivirion, a vaccine inspired by the cosmos. Discover how its celestial elements harmonize to create a powerful shield, safeguarding individuals from viral threats.</p>
+        </div>
+  
+        
+        <div class="flex-shrink-0 pr-16">
+            <a href="#" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Read More</a>
+        </div>
+    </div>
+  
+    
+    
+  
+</div>
+
+
+
+
+  {% endblock %}

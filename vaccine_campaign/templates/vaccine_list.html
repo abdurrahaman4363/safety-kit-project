@@ -1,0 +1,55 @@
+
+{% extends 'base.html' %} 
+{% block content %}
+  <h2 class='mt-24 text-center mb-5 font-bold text-3xl'>Vaccine List</h2>
+ 
+  <table class="table m-5 p-10 w-full m-auto">
+    <thead>
+      <tr class='mb-5'>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <hr class='w-full my-3'>
+    <tbody class='text-center'>
+      {% for vaccine in vaccine_list %}
+      <tr class=''>
+        <td>{{ vaccine.id }}</td> 
+        <td>{{ vaccine.name }}</td>
+        <td>{{ vaccine.date }}</td>
+        <td>{{ vaccine.description |truncatewords:7 }}</td>  
+        {% if request.user.account.role == "Doctor" %}
+        <td>
+          <button class="bg-yellow-500 text-white text-sm px-2 py-1 rounded hover:bg-yellow-600 focus:outline-none focus:shadow-outline-yellow">
+            <a
+            href="{% url 'edit_vaccine' vaccine.id %}"
+            >Edit
+          </a>
+          </button>
+          <button class="bg-red-500 text-white text-sm px-2 py-1 rounded hover:bg-red-600 focus:outline-none focus:shadow-outline-red">
+            <a
+            href="{% url 'delete_vaccine' vaccine.id %}"
+            >Delete
+          </a> 
+          </button>
+        </td>
+        {% else %}
+        <td>
+          <button class="bg-blue-900 text-white text-sm px-2 py-1 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline-red">
+            <a
+            href="{% url 'booking'%}"
+            >Take Vaccine
+          </a> 
+          </button>
+        </td>
+        {% endif %} 
+        
+      </tr>
+      
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

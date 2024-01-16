@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="{% static 'img/icon1.png' %}">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Dummy Banking System" />
+        <title>
+            {% block head_title %}Safety Kit{% endblock %}
+        </title>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"/>
+
+        {% block head_extra %}{% endblock %}
+        <style>
+          
+        </style>
+    </head>
+    <body class="bg-pink-100">
+        <div class='mb-16'>{% include 'navbar.html' %}</div>
+        <div class='my-10'>
+        {% block body %}
+            <div class="lg:container lg:mx-auto" id="main">
+                {% include 'messages.html' %}
+                {% block content %}
+                
+                {% endblock %}
+            </div>
+            {% include 'footer.html' %}
+
+        {% endblock %}
+        </div>
+
+
+
+        <script
+      src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js"
+      crossorigin="anonymous"
+      defer ></script>
+    </body>
+
+</html>

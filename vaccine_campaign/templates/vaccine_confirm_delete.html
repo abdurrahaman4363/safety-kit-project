@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %} 
+
+{% block content %}
+  <div class="max-w-md mx-auto mt-24 my-8 bg-blue-900 p-8 text-white rounded shadow text-center">
+    <h2 class="text-2xl font-bold mb-4">Confirm Deletion</h2>
+    <p class="mb-4">Are you sure you want to delete? <br> <small class='font-bold text-2xl text-red-400'>{{ object }}</small></p>
+    
+    <form method="post">
+      {% csrf_token %}
+      <button 
+        type="submit" 
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-red"
+      >
+        Confirm
+      </button>
+    </form>
+
+    <button class="bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 my-3 px-6 rounded focus:outline-none focus:shadow-outline-red">
+      <a
+      href="{% url 'vaccine_list' %}"
+      >Cancel
+    </a> 
+    </button>
+  </div>
+{% endblock %}
+

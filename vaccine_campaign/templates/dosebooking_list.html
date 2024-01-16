@@ -1,0 +1,60 @@
+
+{% extends 'base.html' %}
+
+{% comment %} {% block content %}
+  <h2 class='mt-24'>Your Dose Bookings</h2>
+  <ul>
+    {% for booking in bookings %}
+      <li>{{ booking.id }}  {{ booking.patient }} {{ booking.first_dose }} - {{ booking.second_dose }} - {{ booking.phone_number }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %} {% endcomment %}
+
+ {% block content %}
+  <h2 class='mt-24 text-center mb-5 font-bold text-3xl'>Dose Bookings</h2>
+ 
+  <table class="table m-5 p-10 w-full m-auto">
+    <thead>
+      <tr class='mb-5'>
+        <th scope="col">ID</th>
+        <th scope="col">Patien Name</th>
+        <th scope="col">First Dose</th>
+        <th scope="col">Second Dose</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <hr class='w-full my-3'>
+    <tbody class='text-center'>
+      {% for booking in bookings %}
+      <tr class=''>
+        <td>{{ booking.id }}</td> 
+        <td>{{ booking.patient }}</td>
+        <td>{{ booking.first_dose }}</td>
+        <td>{{ booking.second_dose }}</td>  
+        <td>{{ booking.phone_number }}</td>  
+        <td>
+          <button class="bg-blue-900 text-white text-sm px-2 py-1 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline-red">
+            <a
+            href="{% url 'vaccine_list'%}"
+            >Vaccine list
+          </a> 
+          </button>
+          <button class="bg-blue-900 text-white text-sm px-2 py-1 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline-red" onclick="redirectToCampaign()">
+            Add Review
+        </button>
+        
+        <script>
+            function redirectToCampaign() {
+                
+                window.location.href = "{% url 'home' %}#campaign";
+            }
+        </script>
+        
+        </td>
+      </tr>
+      
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %} 
