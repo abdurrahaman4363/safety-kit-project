@@ -52,14 +52,6 @@ class UserLogoutView(LogoutView):
 class UserAccountUpdateView(View):
     template_name = 'accounts/profile.html'
 
-    def form_valid(self, form):
-        messages.success(self.request, 'Successfully Upadate Information.')
-        return super().form_valid(form)
-    
-    def form_invalid(self, form):
-        messages.success(self.request, 'Information Incorrect.')
-        return super().form_invalid(form)
-
     def get(self, request):
         form = UserUpdateForm(instance=request.user)
         return render(request, self.template_name, {'form': form})
@@ -67,6 +59,7 @@ class UserAccountUpdateView(View):
     def post(self, request):
         form = UserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
+            messages.success(self.request, 'Successfully Upadate Information.')
             form.save()
             return redirect('profile')  
         return render(request, self.template_name, {'form': form})    

@@ -834,7 +834,7 @@
         "kind": 6,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "class UserLogoutView(LogoutView):\n    def get_success_url(self):\n        if self.request.user.is_authenticated:\n            logout(self.request)\n        return reverse_lazy(\"login\")\nclass UserAccountUpdateView(View):\n    template_name = 'accounts/profile.html'\n    def form_valid(self, form):\n        messages.success(self.request, 'Successfully Upadate Information.')\n        return super().form_valid(form)",
+        "peekOfCode": "class UserLogoutView(LogoutView):\n    def get_success_url(self):\n        if self.request.user.is_authenticated:\n            logout(self.request)\n        return reverse_lazy(\"login\")\nclass UserAccountUpdateView(View):\n    template_name = 'accounts/profile.html'\n    def get(self, request):\n        form = UserUpdateForm(instance=request.user)\n        return render(request, self.template_name, {'form': form})",
         "detail": "accounts.views",
         "documentation": {}
     },
@@ -843,7 +843,7 @@
         "kind": 6,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "class UserAccountUpdateView(View):\n    template_name = 'accounts/profile.html'\n    def form_valid(self, form):\n        messages.success(self.request, 'Successfully Upadate Information.')\n        return super().form_valid(form)\n    def form_invalid(self, form):\n        messages.success(self.request, 'Information Incorrect.')\n        return super().form_invalid(form)\n    def get(self, request):\n        form = UserUpdateForm(instance=request.user)",
+        "peekOfCode": "class UserAccountUpdateView(View):\n    template_name = 'accounts/profile.html'\n    def get(self, request):\n        form = UserUpdateForm(instance=request.user)\n        return render(request, self.template_name, {'form': form})\n    def post(self, request):\n        form = UserUpdateForm(request.POST, instance=request.user)\n        if form.is_valid():\n            messages.success(self.request, 'Successfully Upadate Information.')\n            form.save()",
         "detail": "accounts.views",
         "documentation": {}
     },
